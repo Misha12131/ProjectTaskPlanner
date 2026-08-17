@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Планувальник завдань</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>📋 Планувальник завдань</h1>
+        <p>Організуй свої завдання та не забувай про важливі справи.</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>➕ Додати завдання</h2>
+
+            <form>
+                <label for="task">Назва завдання:</label>
+                <input
+                    type="text"
+                    id="task"
+                    name="task"
+                    placeholder="Наприклад: Зробити домашнє завдання"
+                >
+
+                <br><br>
+
+                <label for="date">Дата:</label>
+                <input type="date" id="date" name="date">
+
+                <br><br>
+
+                <label for="priority">Пріоритет:</label>
+                <select id="priority" name="priority">
+                    <option value="low">Низький</option>
+                    <option value="medium">Середній</option>
+                    <option value="high">Високий</option>
+                </select>
+
+                <br><br>
+
+                <button type="submit">Додати завдання</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>📝 Мої завдання</h2>
+
+            <article>
+                <h3>Вивчити HTML</h3>
+                <p>📅 Дата: 17.08.2026</p>
+                <p>🔥 Пріоритет: Високий</p>
+                <button>Виконано</button>
+                <button>Видалити</button>
+            </article>
+            <article>
+                <h3>Зробити домашнє завдання</h3>
+                <p>📅 Дата: 18.08.2026</p>
+                <p>⭐ Пріоритет: Середній</p>
+                <button>Виконано</button>
+                <button>Видалити</button>
+            </article>
+        </section>
+        <!-- Статистика -->
+        <section>
+            <h2>📊 Статистика</h2>
+            <p>Всього завдань: <strong>2</strong></p>
+            <p>Виконано: <strong>0</strong></p>
+            <p>Залишилося: <strong>2</strong></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Планувальник завдань</p>
+    </footer>
+</body>
+</html>
