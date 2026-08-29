@@ -1,0 +1,577 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f8f7f2;
+    font-family: Arial, sans-serif;
+    color: #555;
+    overflow-x: hidden;
+}
+
+.planner {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 130px;
+}
+
+
+/* =========================
+   РАСТЕНИЯ СВЕРХУ
+========================= */
+
+.plants {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 180px;
+    pointer-events: none;
+}
+
+.plant {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 180px;
+}
+
+.plant.left {
+    left: 25px;
+}
+
+.plant.center {
+    left: 48%;
+}
+
+.plant.right {
+    right: 25px;
+}
+
+.leaf {
+    position: absolute;
+    width: 19px;
+    height: 34px;
+    background: #9bae91;
+    border-radius: 50%;
+    transform: rotate(35deg);
+}
+
+.leaf:nth-child(1) {
+    left: 15px;
+    top: 20px;
+}
+
+.leaf:nth-child(2) {
+    left: 38px;
+    top: 10px;
+    transform: rotate(-35deg);
+}
+
+.leaf:nth-child(3) {
+    left: 48px;
+    top: 40px;
+}
+
+.leaf:nth-child(4) {
+    left: 20px;
+    top: 55px;
+    transform: rotate(-20deg);
+}
+
+.leaf:nth-child(5) {
+    left: 60px;
+    top: 70px;
+    transform: rotate(25deg);
+}
+
+.leaf:nth-child(6) {
+    left: 35px;
+    top: 85px;
+    transform: rotate(-40deg);
+}
+
+.leaf:nth-child(7) {
+    left: 65px;
+    top: 105px;
+}
+
+.stem {
+    position: absolute;
+    width: 2px;
+    height: 140px;
+    background: #aab6a2;
+    left: 48px;
+    top: 25px;
+}
+
+
+/* =========================
+   ЗАГОЛОВОК
+========================= */
+
+.title {
+    text-align: center;
+    margin-top: 20px;
+    color: #71816b;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.subtitle {
+    text-align: center;
+    color: #a0aa9a;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   ДОСКА
+========================= */
+
+.board {
+    position: relative;
+
+    width: 62%;
+    max-width: 650px;
+    min-width: 330px;
+
+    height: 330px;
+
+    margin: 40px auto 10px;
+
+    background-color: #faf9f4;
+
+    background-image:
+        linear-gradient(#ddd8ca 1px, transparent 1px),
+        linear-gradient(90deg, #ddd8ca 1px, transparent 1px);
+
+    background-size: 33px 30px;
+
+    border: 3px solid #e4dfd2;
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   ЗАПИСКИ
+========================= */
+
+.note {
+    position: absolute;
+
+    width: 110px;
+    min-height: 85px;
+
+    padding: 18px;
+
+    font-size: 13px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+
+    user-select: none;
+
+    cursor: grab;
+
+    z-index: 2;
+
+    transition: box-shadow 0.15s;
+}
+
+.note:active {
+    cursor: grabbing;
+}
+
+.note:hover {
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.16);
+}
+
+
+/* Синяя */
+
+.note.blue {
+    left: 50px;
+    top: 35px;
+
+    background: #9fb8c9;
+
+    transform: rotate(-5deg);
+
+    color: white;
+}
+
+
+/* Розовая */
+
+.note.pink {
+    right: 55px;
+    top: 30px;
+
+    background: #e39b83;
+
+    transform: rotate(3deg);
+
+    color: white;
+}
+
+
+/* Жёлтая */
+
+.note.yellow {
+    left: 125px;
+    bottom: 55px;
+
+    background: #efd4a6;
+
+    transform: rotate(-2deg);
+
+    color: #6c6253;
+}
+
+
+/* Зелёная */
+
+.note.green {
+    right: 55px;
+    bottom: 45px;
+
+    background: #b8c9b7;
+
+    transform: rotate(7deg);
+
+    color: white;
+}
+
+.note b {
+    font-size: 12px;
+}
+
+.note p {
+    margin: 8px 0;
+    font-size: 11px;
+}
+
+
+/* =========================
+   НОВЫЕ ЗАПИСКИ
+========================= */
+
+.new-note {
+    width: 115px;
+    min-height: 85px;
+    height: auto;
+
+    padding: 14px;
+
+    z-index: 10;
+
+    animation: noteAppear 0.3s ease;
+}
+
+.new-note p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+/* Кнопка удаления */
+
+.delete-note {
+    position: absolute;
+
+    right: 5px;
+    top: 3px;
+
+    border: none;
+
+    background: transparent;
+
+    color: rgba(80, 80, 80, 0.55);
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    z-index: 20;
+}
+
+.delete-note:hover {
+    color: #d45f4d;
+}
+
+
+/* Анимация */
+
+@keyframes noteAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.7) rotate(-5deg);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   ПОЛЕ ВВОДА
+========================= */
+
+.task-input {
+    display: flex;
+
+    width: 62%;
+    max-width: 650px;
+    min-width: 330px;
+
+    margin: 10px auto;
+}
+
+.task-input input {
+    flex: 1;
+
+    height: 45px;
+
+    border: 1px solid #d7ddd4;
+
+    border-radius: 15px;
+
+    padding: 0 15px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.task-input input:focus {
+    border-color: #9bae91;
+}
+
+.task-input button {
+    margin-left: 8px;
+
+    border: none;
+
+    background: #9bae91;
+
+    color: white;
+
+    padding: 0 18px;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.task-input button:hover {
+    background: #879c7e;
+}
+
+
+/* =========================
+   ПОЛКА
+========================= */
+
+.shelf {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 120px;
+
+    background: #dfc29f;
+
+    border-top: 4px solid #d2b48d;
+
+    z-index: 20;
+}
+
+
+/* =========================
+   КНИГИ
+========================= */
+
+.books {
+    position: absolute;
+
+    left: 15px;
+    bottom: 10px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 3px;
+}
+
+.book {
+    width: 30px;
+    border-radius: 2px;
+}
+
+.book.one {
+    height: 90px;
+    background: #a4b8c1;
+}
+
+.book.two {
+    height: 65px;
+    background: #c9d4b9;
+}
+
+.book.three {
+    height: 45px;
+    background: #d98f76;
+}
+
+
+/* =========================
+   ГОРШОК
+========================= */
+
+.pot {
+    position: absolute;
+
+    left: 14px;
+    bottom: 5px;
+
+    width: 45px;
+    height: 65px;
+
+    background: white;
+
+    border-radius: 0 0 10px 10px;
+
+    border: 1px solid #ddd;
+}
+
+.pot::before {
+    content: "";
+
+    position: absolute;
+
+    top: 25px;
+    left: -2px;
+
+    width: 49px;
+    height: 8px;
+
+    background: #d7ddd4;
+}
+
+
+/* =========================
+   РАСТЕНИЕ
+========================= */
+
+.small-leaf {
+    position: absolute;
+
+    width: 10px;
+    height: 50px;
+
+    background: #8ea58b;
+
+    left: 27px;
+    bottom: 60px;
+
+    transform: rotate(-8deg);
+}
+
+
+/* =========================
+   КАМЕРА
+========================= */
+
+.camera {
+    position: absolute;
+
+    right: 100px;
+    bottom: 10px;
+
+    width: 42px;
+    height: 35px;
+
+    background: #91aebf;
+
+    border-radius: 9px;
+}
+
+.camera::before {
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 22px;
+
+    background: #f4eee2;
+
+    border-radius: 50%;
+
+    left: 10px;
+    top: 6px;
+
+    border: 5px solid #d6b98d;
+}
+
+
+/* =========================
+   ТРЕУГОЛЬНИК
+========================= */
+
+.triangle {
+    position: absolute;
+
+    right: 45px;
+    bottom: 45px;
+
+    width: 0;
+    height: 0;
+
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 38px solid #df947b;
+}
+
+
+/* =========================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================= */
+
+@media (max-width: 600px) {
+
+    .board,
+    .task-input {
+        width: 90%;
+        min-width: unset;
+    }
+
+    .note.blue {
+        left: 20px;
+    }
+
+    .note.pink {
+        right: 20px;
+    }
+
+    .note.yellow {
+        left: 70px;
+    }
+
+    .note.green {
+        right: 20px;
+    }
+}
