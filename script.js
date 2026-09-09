@@ -3,38 +3,14 @@
 ===================================================== */
 
 const noteColors = [
-    {
-        background: "#f1d6a8",
-        color: "#665b4d"
-    },
-    {
-        background: "#a9c3d4",
-        color: "#ffffff"
-    },
-    {
-        background: "#e5a18c",
-        color: "#ffffff"
-    },
-    {
-        background: "#b8c9b7",
-        color: "#ffffff"
-    },
-    {
-        background: "#d6b4c7",
-        color: "#ffffff"
-    },
-    {
-        background: "#c8b9d9",
-        color: "#ffffff"
-    },
-    {
-        background: "#e4c98e",
-        color: "#665b4d"
-    },
-    {
-        background: "#b7c8d9",
-        color: "#ffffff"
-    }
+    { background: "#f1d6a8", color: "#665b4d" },
+    { background: "#a9c3d4", color: "#ffffff" },
+    { background: "#e5a18c", color: "#ffffff" },
+    { background: "#b8c9b7", color: "#ffffff" },
+    { background: "#d6b4c7", color: "#ffffff" },
+    { background: "#c8b9d9", color: "#ffffff" },
+    { background: "#e4c98e", color: "#665b4d" },
+    { background: "#b7c8d9", color: "#ffffff" }
 ];
 
 
@@ -45,29 +21,19 @@ const noteColors = [
 function addTask() {
 
     const input = document.getElementById("taskInput");
-
     const taskText = input.value.trim();
 
-
-    // Если поле пустое
     if (taskText === "") {
         return;
     }
 
-
-    // Находим доску
     const board = document.querySelector(".board");
-
-
-    // Создаём записку
     const note = document.createElement("div");
 
     note.className = "note new-note";
 
 
-    /* =================================================
-       ВЫБИРАЕМ СЛУЧАЙНЫЙ ЦВЕТ
-    ================================================= */
+    /* СЛУЧАЙНЫЙ ЦВЕТ */
 
     const randomColor =
         noteColors[
@@ -76,22 +42,20 @@ function addTask() {
             )
         ];
 
-
-    note.style.background =
-        randomColor.background;
-
-    note.style.color =
-        randomColor.color;
+    note.style.background = randomColor.background;
+    note.style.color = randomColor.color;
 
 
-    /* =================================================
-       ТЕКСТ ЗАПИСКИ
-    ================================================= */
+    /* ТЕКСТ */
 
     note.innerHTML = `
         <b>ЗАДАЧА:</b>
 
         <p>${taskText}</p>
+
+        <button class="complete-note">
+            ✓ Виконано
+        </button>
 
         <button class="delete-note">
             ×
@@ -99,52 +63,32 @@ function addTask() {
     `;
 
 
-    /* =================================================
-       СЛУЧАЙНАЯ ПОЗИЦИЯ
-    ================================================= */
+    /* СЛУЧАЙНАЯ ПОЗИЦИЯ */
 
-    const maxX =
-        board.clientWidth - 125;
+    const maxX = board.clientWidth - 140;
+    const maxY = board.clientHeight - 120;
 
-    const maxY =
-        board.clientHeight - 105;
+    const x = Math.random() * Math.max(maxX, 0);
+    const y = Math.random() * Math.max(maxY, 0);
 
-
-    const x =
-        Math.random() * maxX;
-
-    const y =
-        Math.random() * maxY;
+    note.style.left = x + "px";
+    note.style.top = y + "px";
 
 
-    note.style.left =
-        x + "px";
-
-    note.style.top =
-        y + "px";
-
-
-    /* =================================================
-       СЛУЧАЙНЫЙ НАКЛОН
-    ================================================= */
+    /* СЛУЧАЙНЫЙ НАКЛОН */
 
     const rotation =
         Math.random() * 10 - 5;
-
 
     note.style.transform =
         `rotate(${rotation}deg)`;
 
 
-    /* =================================================
-       ДОБАВЛЯЕМ НА ДОСКУ
-    ================================================= */
-
     board.appendChild(note);
 
 
     /* =================================================
-       КНОПКА УДАЛЕНИЯ
+       УДАЛЕНИЕ
     ================================================= */
 
     const deleteButton =
@@ -158,29 +102,117 @@ function addTask() {
 
             note.remove();
 
+            updateProgress();
         }
     );
 
 
     /* =================================================
-       ВКЛЮЧАЕМ ПЕРЕТАСКИВАНИЕ
+       ВЫПОЛНЕНО
     ================================================= */
+
+    const completeButton =
+        note.querySelector(".complete-note");
+
+    completeButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            note.classList.toggle("completed");
+
+            if (
+                note.classList.contains("completed")
+            ) {
+
+                completeButton.textContent =
+                    "↩ Скасувати";
+
+            } else {
+
+                completeButton.textContent =
+                    "✓ Виконано";
+            }
+
+            updateProgress();
+        }
+    );
+
+
+    /* ПЕРЕТАСКИВАНИЕ */
 
     makeDraggable(note);
 
 
-    /* =================================================
-       ОЧИЩАЕМ ПОЛЕ
-    ================================================= */
+    /* ОЧИСТКА */
 
     input.value = "";
-
     input.focus();
+
+
+    /* ПРОГРЕСС */
+
+    updateProgress();
 }
 
 
 /* =====================================================
-   ПЕРЕТАСКИВАНИЕ ЗАПИСКИ
+   ПРОГРЕСС
+===================================================== */
+
+function updateProgress() {
+
+    const tasks =
+        document.querySelectorAll(".new-note");
+
+    const completed =
+        document.querySelectorAll(
+            ".new-note.completed"
+        );
+
+    const total = tasks.length;
+    const done = completed.length;
+
+    let percent = 0;
+
+    if (total > 0) {
+        percent =
+            Math.round(
+                (done / total) * 100
+            );
+    }
+
+
+    /* ПРОЦЕНТ */
+
+    const percentElement =
+        document.getElementById(
+            "progressPercent"
+        );
+
+    if (percentElement) {
+        percentElement.textContent =
+            percent + "%";
+    }
+
+
+    /* ПОЛОСКА */
+
+    const progressFill =
+        document.getElementById(
+            "progressFill"
+        );
+
+    if (progressFill) {
+        progressFill.style.width =
+            percent + "%";
+    }
+}
+
+
+/* =====================================================
+   ПЕРЕТАСКИВАНИЕ
 ===================================================== */
 
 function makeDraggable(note) {
@@ -199,30 +231,21 @@ function makeDraggable(note) {
 
     function startDrag(event) {
 
-        // Если нажали на кнопку удаления
         if (
             event.target.classList.contains(
                 "delete-note"
+            ) ||
+            event.target.classList.contains(
+                "complete-note"
             )
         ) {
             return;
         }
 
-
         isDragging = true;
-
-
-        const board =
-            note.parentElement;
-
-
-        const boardRect =
-            board.getBoundingClientRect();
-
 
         const noteRect =
             note.getBoundingClientRect();
-
 
         offsetX =
             event.clientX -
@@ -232,13 +255,8 @@ function makeDraggable(note) {
             event.clientY -
             noteRect.top;
 
-
-        // Поднимаем записку наверх
         note.style.zIndex = 100;
-
-        note.style.cursor =
-            "grabbing";
-
+        note.style.cursor = "grabbing";
 
         document.addEventListener(
             "mousemove",
@@ -249,7 +267,6 @@ function makeDraggable(note) {
             "mouseup",
             stopDrag
         );
-
     }
 
 
@@ -259,54 +276,39 @@ function makeDraggable(note) {
             return;
         }
 
-
         const board =
             note.parentElement;
 
-
         const boardRect =
             board.getBoundingClientRect();
-
 
         let x =
             event.clientX -
             boardRect.left -
             offsetX;
 
-
         let y =
             event.clientY -
             boardRect.top -
             offsetY;
 
-
-        /* =============================================
-           НЕ ДАЁМ ЗАПИСКЕ ВЫЛЕТЕТЬ ЗА ДОСКУ
-        ============================================= */
-
         const maxX =
             board.clientWidth -
             note.offsetWidth;
-
 
         const maxY =
             board.clientHeight -
             note.offsetHeight;
 
+        x = Math.max(
+            0,
+            Math.min(x, maxX)
+        );
 
-        x =
-            Math.max(
-                0,
-                Math.min(x, maxX)
-            );
-
-
-        y =
-            Math.max(
-                0,
-                Math.min(y, maxY)
-            );
-
+        y = Math.max(
+            0,
+            Math.min(y, maxY)
+        );
 
         note.style.left =
             x + "px";
@@ -314,11 +316,8 @@ function makeDraggable(note) {
         note.style.top =
             y + "px";
 
-
-        // Убираем rotate во время движения
         note.style.transform =
             "rotate(0deg)";
-
     }
 
 
@@ -328,13 +327,9 @@ function makeDraggable(note) {
             return;
         }
 
-
         isDragging = false;
 
-
-        note.style.cursor =
-            "grab";
-
+        note.style.cursor = "grab";
 
         document.removeEventListener(
             "mousemove",
@@ -345,14 +340,12 @@ function makeDraggable(note) {
             "mouseup",
             stopDrag
         );
-
     }
-
 }
 
 
 /* =====================================================
-   КНОПКА "ДОДАТИ"
+   КНОПКА ДОБАВИТЬ
 ===================================================== */
 
 document
@@ -364,7 +357,7 @@ document
 
 
 /* =====================================================
-   ENTER = ДОБАВИТЬ
+   ENTER
 ===================================================== */
 
 document
@@ -382,7 +375,7 @@ document
 
 
 /* =====================================================
-   ДЕЛАЕМ СТАРЫЕ ЗАПИСКИ ПЕРЕТАСКИВАЕМЫМИ
+   СТАРЫЕ ЗАПИСКИ
 ===================================================== */
 
 document
@@ -392,3 +385,10 @@ document
         makeDraggable(note);
 
     });
+
+
+/* =====================================================
+   НАЧАЛЬНЫЙ ПРОГРЕСС
+===================================================== */
+
+updateProgress();

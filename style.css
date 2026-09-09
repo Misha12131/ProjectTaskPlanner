@@ -1,3 +1,7 @@
+/* =====================================================
+   ОСНОВА
+===================================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -5,38 +9,69 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: #f8f7f2;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(180, 200, 170, 0.28),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 30%,
+            rgba(230, 190, 175, 0.25),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #f7f5ee,
+            #eeece3
+        );
+
     font-family: Arial, sans-serif;
-    color: #555;
+    color: #4f584d;
+
     overflow-x: hidden;
 }
+
+
+/* =====================================================
+   ПЛАНИРОВЩИК
+===================================================== */
 
 .planner {
     width: 100%;
     min-height: 100vh;
+
     position: relative;
-    padding-top: 30px;
-    padding-bottom: 130px;
+
+    padding-top: 35px;
+    padding-bottom: 150px;
 }
 
 
-/* =========================
-   РАСТЕНИЯ СВЕРХУ
-========================= */
+/* =====================================================
+   ВЕРХНИЕ РАСТЕНИЯ
+===================================================== */
 
 .plants {
     position: absolute;
+
     top: 0;
+    left: 0;
+
     width: 100%;
-    height: 180px;
+    height: 190px;
+
     pointer-events: none;
 }
 
 .plant {
     position: absolute;
+
     top: 0;
-    width: 100px;
-    height: 180px;
+
+    width: 110px;
+    height: 190px;
 }
 
 .plant.left {
@@ -44,135 +79,314 @@ body {
 }
 
 .plant.center {
-    left: 48%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .plant.right {
     right: 25px;
 }
 
-.leaf {
-    position: absolute;
-    width: 19px;
-    height: 34px;
-    background: #9bae91;
-    border-radius: 50%;
-    transform: rotate(35deg);
-}
 
-.leaf:nth-child(1) {
-    left: 15px;
-    top: 20px;
-}
-
-.leaf:nth-child(2) {
-    left: 38px;
-    top: 10px;
-    transform: rotate(-35deg);
-}
-
-.leaf:nth-child(3) {
-    left: 48px;
-    top: 40px;
-}
-
-.leaf:nth-child(4) {
-    left: 20px;
-    top: 55px;
-    transform: rotate(-20deg);
-}
-
-.leaf:nth-child(5) {
-    left: 60px;
-    top: 70px;
-    transform: rotate(25deg);
-}
-
-.leaf:nth-child(6) {
-    left: 35px;
-    top: 85px;
-    transform: rotate(-40deg);
-}
-
-.leaf:nth-child(7) {
-    left: 65px;
-    top: 105px;
-}
+/* стебель */
 
 .stem {
     position: absolute;
-    width: 2px;
-    height: 140px;
-    background: #aab6a2;
-    left: 48px;
+
+    width: 3px;
+    height: 150px;
+
+    left: 53px;
     top: 25px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #879d81,
+            #aabd9f
+        );
+
+    border-radius: 10px;
+
+    box-shadow:
+        1px 0 3px rgba(70, 90, 65, 0.15);
 }
 
 
-/* =========================
+/* листья */
+
+.leaf {
+    position: absolute;
+
+    width: 22px;
+    height: 38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b5c9ad,
+            #829b7c
+        );
+
+    border-radius: 70% 15% 70% 15%;
+
+    box-shadow:
+        2px 4px 7px rgba(65, 85, 60, 0.15);
+
+    transform-origin: bottom center;
+}
+
+.leaf:nth-child(1) {
+    left: 14px;
+    top: 20px;
+    transform: rotate(35deg);
+}
+
+.leaf:nth-child(2) {
+    left: 43px;
+    top: 12px;
+    transform: rotate(-38deg);
+}
+
+.leaf:nth-child(3) {
+    left: 52px;
+    top: 43px;
+    transform: rotate(35deg);
+}
+
+.leaf:nth-child(4) {
+    left: 18px;
+    top: 58px;
+    transform: rotate(-28deg);
+}
+
+.leaf:nth-child(5) {
+    left: 64px;
+    top: 73px;
+    transform: rotate(30deg);
+}
+
+.leaf:nth-child(6) {
+    left: 37px;
+    top: 92px;
+    transform: rotate(-42deg);
+}
+
+.leaf:nth-child(7) {
+    left: 68px;
+    top: 112px;
+    transform: rotate(28deg);
+}
+
+
+/* =====================================================
    ЗАГОЛОВОК
-========================= */
+===================================================== */
 
 .title {
+    position: relative;
+
     text-align: center;
-    margin-top: 20px;
-    color: #71816b;
-    font-size: 28px;
-    font-weight: bold;
+
+    margin: 25px 0 0;
+
+    color: #667761;
+
+    font-size: 38px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 3px 0 rgba(255, 255, 255, 0.9),
+        0 8px 20px rgba(90, 105, 80, 0.12);
 }
 
 .subtitle {
     text-align: center;
-    color: #a0aa9a;
-    margin-top: 5px;
+
+    margin-top: 8px;
+
+    color: #929d8c;
+
+    font-size: 15px;
+    letter-spacing: 1px;
 }
 
 
-/* =========================
+/* маленькая декоративная линия */
+
+.subtitle::after {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+    height: 3px;
+
+    margin: 12px auto 0;
+
+    background: #b5c5ae;
+
+    border-radius: 20px;
+}
+
+
+/* =====================================================
    ДОСКА
-========================= */
+===================================================== */
 
 .board {
     position: relative;
 
-    width: 62%;
-    max-width: 650px;
+    width: 68%;
+    max-width: 760px;
     min-width: 330px;
 
-    height: 330px;
+    height: 390px;
 
-    margin: 40px auto 10px;
+    margin: 45px auto 18px;
 
-    background-color: #faf9f4;
+    background-color: rgba(255, 255, 250, 0.82);
 
     background-image:
-        linear-gradient(#ddd8ca 1px, transparent 1px),
-        linear-gradient(90deg, #ddd8ca 1px, transparent 1px);
+        linear-gradient(
+            rgba(190, 185, 170, 0.22) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(190, 185, 170, 0.22) 1px,
+            transparent 1px
+        );
 
-    background-size: 33px 30px;
+    background-size: 32px 32px;
 
-    border: 3px solid #e4dfd2;
-    border-radius: 8px;
+    border: 1px solid rgba(210, 205, 190, 0.9);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 45px rgba(70, 75, 65, 0.13),
+        0 4px 10px rgba(70, 75, 65, 0.06),
+        inset 0 0 35px rgba(255, 255, 255, 0.7);
 
     overflow: hidden;
 }
 
 
-/* =========================
-   ЗАПИСКИ
-========================= */
+/* декоративный край доски */
+
+.board::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a9bda0,
+            #d8b8a5,
+            #a9bda0
+        );
+
+    opacity: 0.8;
+
+    z-index: 50;
+}
+
+
+/* =====================================================
+   ПРОГРЕСС
+===================================================== */
+
+.progress-container {
+    position: absolute;
+
+    top: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 55%;
+
+    padding: 10px 14px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(215, 210, 195, 0.7);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 15px rgba(70, 70, 60, 0.08);
+
+    z-index: 30;
+
+    backdrop-filter: blur(5px);
+}
+
+.progress-text {
+    text-align: center;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    color: #74806e;
+
+    margin-bottom: 7px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+
+    background: #e4e5dd;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #9eb696,
+            #7f9b78
+        );
+
+    border-radius: 20px;
+
+    transition:
+        width 0.4s ease;
+}
+
+
+/* =====================================================
+   СТИКЕРЫ
+===================================================== */
 
 .note {
     position: absolute;
 
-    width: 110px;
-    min-height: 85px;
+    width: 125px;
+    min-height: 100px;
 
     padding: 18px;
 
     font-size: 13px;
 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+    border-radius: 5px;
 
     user-select: none;
 
@@ -180,97 +394,163 @@ body {
 
     z-index: 2;
 
-    transition: box-shadow 0.15s;
+    box-shadow:
+        0 10px 18px rgba(60, 60, 50, 0.16),
+        0 2px 4px rgba(60, 60, 50, 0.08);
+
+    transition:
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.note::before {
+    content: "";
+
+    position: absolute;
+
+    top: -5px;
+    left: 50%;
+
+    width: 48px;
+    height: 13px;
+
+    transform: translateX(-50%) rotate(-2deg);
+
+    background: rgba(255, 255, 255, 0.48);
+
+    box-shadow:
+        0 1px 3px rgba(80, 70, 60, 0.08);
+
+    opacity: 0.8;
+}
+
+.note:hover {
+    box-shadow:
+        0 15px 25px rgba(60, 60, 50, 0.22);
+
+    filter: brightness(1.04);
 }
 
 .note:active {
     cursor: grabbing;
 }
 
-.note:hover {
-    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.16);
-}
-
-
-/* Синяя */
-
-.note.blue {
-    left: 50px;
-    top: 35px;
-
-    background: #9fb8c9;
-
-    transform: rotate(-5deg);
-
-    color: white;
-}
-
-
-/* Розовая */
-
-.note.pink {
-    right: 55px;
-    top: 30px;
-
-    background: #e39b83;
-
-    transform: rotate(3deg);
-
-    color: white;
-}
-
-
-/* Жёлтая */
-
-.note.yellow {
-    left: 125px;
-    bottom: 55px;
-
-    background: #efd4a6;
-
-    transform: rotate(-2deg);
-
-    color: #6c6253;
-}
-
-
-/* Зелёная */
-
-.note.green {
-    right: 55px;
-    bottom: 45px;
-
-    background: #b8c9b7;
-
-    transform: rotate(7deg);
-
-    color: white;
-}
-
 .note b {
     font-size: 12px;
+
+    letter-spacing: 0.5px;
 }
 
 .note p {
-    margin: 8px 0;
+    margin: 10px 0;
+
     font-size: 11px;
+
+    line-height: 1.5;
 }
 
 
-/* =========================
+/* =====================================================
+   СИНЯЯ
+===================================================== */
+
+.note.blue {
+    left: 55px;
+    top: 105px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #abc5d5,
+            #92b1c4
+        );
+
+    color: white;
+
+    transform: rotate(-5deg);
+}
+
+
+/* =====================================================
+   РОЗОВАЯ
+===================================================== */
+
+.note.pink {
+    right: 65px;
+    top: 100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #edaa96,
+            #dd927d
+        );
+
+    color: white;
+
+    transform: rotate(4deg);
+}
+
+
+/* =====================================================
+   ЖЁЛТАЯ
+===================================================== */
+
+.note.yellow {
+    left: 170px;
+    bottom: 45px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3d9a6,
+            #e9c68c
+        );
+
+    color: #655947;
+
+    transform: rotate(-3deg);
+}
+
+
+/* =====================================================
+   ЗЕЛЁНАЯ
+===================================================== */
+
+.note.green {
+    right: 165px;
+    bottom: 38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c5d5c2,
+            #aac2a7
+        );
+
+    color: white;
+
+    transform: rotate(7deg);
+}
+
+
+/* =====================================================
    НОВЫЕ ЗАПИСКИ
-========================= */
+===================================================== */
 
 .new-note {
-    width: 115px;
-    min-height: 85px;
+    width: 130px;
+
+    min-height: 100px;
+
     height: auto;
 
-    padding: 14px;
+    padding: 16px;
 
-    z-index: 10;
+    z-index: 100;
 
-    animation: noteAppear 0.3s ease;
+    animation:
+        noteAppear 0.35s ease;
 }
 
 .new-note p {
@@ -279,38 +559,105 @@ body {
 }
 
 
-/* Кнопка удаления */
+/* =====================================================
+   КНОПКА ВЫПОЛНЕНО
+===================================================== */
+
+.complete-note {
+    border: none;
+
+    padding: 6px 9px;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    color: inherit;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+.complete-note:hover {
+    background: rgba(255, 255, 255, 0.65);
+
+    transform: scale(1.05);
+}
+
+
+/* выполненная задача */
+
+.note.completed {
+    opacity: 0.62;
+
+    filter: grayscale(0.3);
+}
+
+.note.completed p {
+    text-decoration: line-through;
+}
+
+
+/* =====================================================
+   КНОПКА УДАЛЕНИЯ
+===================================================== */
 
 .delete-note {
     position: absolute;
 
-    right: 5px;
-    top: 3px;
+    right: 6px;
+    top: 5px;
+
+    width: 23px;
+    height: 23px;
 
     border: none;
 
-    background: transparent;
+    border-radius: 50%;
 
-    color: rgba(80, 80, 80, 0.55);
+    background: rgba(255, 255, 255, 0.28);
 
-    font-size: 18px;
+    color: rgba(70, 70, 65, 0.65);
+
+    font-size: 17px;
+
+    line-height: 20px;
 
     cursor: pointer;
 
     z-index: 20;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .delete-note:hover {
-    color: #d45f4d;
+    background: rgba(255, 255, 255, 0.8);
+
+    color: #d26051;
+
+    transform: scale(1.12);
 }
 
 
-/* Анимация */
+/* =====================================================
+   АНИМАЦИЯ
+===================================================== */
 
 @keyframes noteAppear {
     from {
         opacity: 0;
-        transform: scale(0.7) rotate(-5deg);
+
+        transform:
+            scale(0.65)
+            rotate(-10deg);
     }
 
     to {
@@ -319,68 +666,112 @@ body {
 }
 
 
-/* =========================
-   ПОЛЕ ВВОДА
-========================= */
+/* =====================================================
+   ПОЛЕ ДОБАВЛЕНИЯ
+===================================================== */
 
 .task-input {
     display: flex;
 
-    width: 62%;
-    max-width: 650px;
+    width: 68%;
+    max-width: 760px;
     min-width: 330px;
 
-    margin: 10px auto;
+    margin: 18px auto;
 }
 
 .task-input input {
     flex: 1;
 
-    height: 45px;
-
-    border: 1px solid #d7ddd4;
-
-    border-radius: 15px;
-
-    padding: 0 15px;
-
-    font-size: 14px;
-
-    outline: none;
-
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-}
-
-.task-input input:focus {
-    border-color: #9bae91;
-}
-
-.task-input button {
-    margin-left: 8px;
-
-    border: none;
-
-    background: #9bae91;
-
-    color: white;
+    height: 52px;
 
     padding: 0 18px;
 
-    border-radius: 15px;
+    border: 1px solid #d7ddd2;
+
+    border-radius: 17px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    color: #596454;
+
+    font-size: 14px;
+
+    box-shadow:
+        0 7px 20px rgba(70, 75, 65, 0.08);
+
+    transition:
+        border 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.task-input input::placeholder {
+    color: #a5ada1;
+}
+
+.task-input input:focus {
+    border-color: #9caf92;
+
+    box-shadow:
+        0 8px 22px rgba(110, 135, 100, 0.15);
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   КНОПКА ДОБАВИТЬ
+===================================================== */
+
+.task-input button {
+    margin-left: 10px;
+
+    padding: 0 24px;
+
+    border: none;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a8bc9e,
+            #849d7d
+        );
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: bold;
 
     cursor: pointer;
 
-    font-size: 14px;
+    box-shadow:
+        0 7px 16px rgba(90, 115, 80, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .task-input button:hover {
-    background: #879c7e;
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 11px 22px rgba(90, 115, 80, 0.23);
+}
+
+.task-input button:active {
+    transform: translateY(1px);
 }
 
 
-/* =========================
-   ПОЛКА
-========================= */
+/* =====================================================
+   НИЖНЯЯ ПОЛКА
+===================================================== */
 
 .shelf {
     position: fixed;
@@ -389,72 +780,131 @@ body {
     left: 0;
 
     width: 100%;
-    height: 120px;
+    height: 125px;
 
-    background: #dfc29f;
+    background:
+        linear-gradient(
+            180deg,
+            #e6c9a7 0%,
+            #d9b990 100%
+        );
 
-    border-top: 4px solid #d2b48d;
+    border-top: 5px solid #cfae84;
+
+    box-shadow:
+        0 -10px 25px rgba(90, 70, 50, 0.12);
 
     z-index: 20;
 }
 
 
-/* =========================
+/* декоративная линия полки */
+
+.shelf::before {
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+/* =====================================================
    КНИГИ
-========================= */
+===================================================== */
 
 .books {
     position: absolute;
 
-    left: 15px;
-    bottom: 10px;
+    left: 18px;
+    bottom: 12px;
 
     display: flex;
 
     align-items: flex-end;
 
-    gap: 3px;
+    gap: 4px;
 }
 
 .book {
-    width: 30px;
-    border-radius: 2px;
+    width: 32px;
+
+    border-radius: 4px 4px 2px 2px;
+
+    box-shadow:
+        3px 3px 7px rgba(70, 55, 40, 0.18);
+
+    position: relative;
+}
+
+
+/* полоска на книгах */
+
+.book::after {
+    content: "";
+
+    position: absolute;
+
+    left: 5px;
+    right: 5px;
+
+    top: 10px;
+
+    height: 3px;
+
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .book.one {
-    height: 90px;
-    background: #a4b8c1;
+    height: 92px;
+    background: #a5bac4;
 }
 
 .book.two {
-    height: 65px;
-    background: #c9d4b9;
+    height: 67px;
+    background: #c7d5b8;
 }
 
 .book.three {
-    height: 45px;
-    background: #d98f76;
+    height: 48px;
+    background: #d98e77;
 }
 
 
-/* =========================
+/* =====================================================
    ГОРШОК
-========================= */
+===================================================== */
 
 .pot {
     position: absolute;
 
-    left: 14px;
+    left: 18px;
     bottom: 5px;
 
-    width: 45px;
-    height: 65px;
+    width: 48px;
+    height: 67px;
 
-    background: white;
+    background:
+        linear-gradient(
+            90deg,
+            #deddd5,
+            #ffffff,
+            #e6e4dc
+        );
 
-    border-radius: 0 0 10px 10px;
+    border-radius:
+        3px 3px 13px 13px;
 
-    border: 1px solid #ddd;
+    border: 1px solid #d7d5ce;
+
+    box-shadow:
+        3px 5px 10px rgba(70, 65, 50, 0.15);
 }
 
 .pot::before {
@@ -462,51 +912,71 @@ body {
 
     position: absolute;
 
-    top: 25px;
-    left: -2px;
+    top: -5px;
+    left: -3px;
 
-    width: 49px;
-    height: 8px;
+    width: 52px;
+    height: 10px;
 
-    background: #d7ddd4;
+    background: #d2d5ca;
+
+    border-radius: 5px;
 }
 
 
-/* =========================
-   РАСТЕНИЕ
-========================= */
+/* =====================================================
+   ЛИСТ
+===================================================== */
 
 .small-leaf {
     position: absolute;
 
-    width: 10px;
-    height: 50px;
+    width: 13px;
+    height: 53px;
 
-    background: #8ea58b;
+    left: 35px;
+    bottom: 64px;
 
-    left: 27px;
-    bottom: 60px;
+    background:
+        linear-gradient(
+            90deg,
+            #9db598,
+            #789474
+        );
+
+    border-radius: 80% 15% 80% 15%;
 
     transform: rotate(-8deg);
+
+    box-shadow:
+        2px 3px 5px rgba(60, 80, 55, 0.15);
 }
 
 
-/* =========================
+/* =====================================================
    КАМЕРА
-========================= */
+===================================================== */
 
 .camera {
     position: absolute;
 
-    right: 100px;
-    bottom: 10px;
+    right: 105px;
+    bottom: 13px;
 
-    width: 42px;
-    height: 35px;
+    width: 48px;
+    height: 38px;
 
-    background: #91aebf;
+    background:
+        linear-gradient(
+            135deg,
+            #a8bfcc,
+            #809eae
+        );
 
-    border-radius: 9px;
+    border-radius: 10px;
+
+    box-shadow:
+        3px 5px 9px rgba(65, 75, 80, 0.2);
 }
 
 .camera::before {
@@ -514,64 +984,117 @@ body {
 
     position: absolute;
 
-    width: 22px;
-    height: 22px;
+    width: 23px;
+    height: 23px;
 
-    background: #f4eee2;
+    left: 12px;
+    top: 7px;
+
+    background: #f4eee1;
 
     border-radius: 50%;
 
-    left: 10px;
-    top: 6px;
-
-    border: 5px solid #d6b98d;
+    border: 5px solid #d3b68b;
 }
 
 
-/* =========================
+/* =====================================================
    ТРЕУГОЛЬНИК
-========================= */
+===================================================== */
 
 .triangle {
     position: absolute;
 
-    right: 45px;
+    right: 48px;
     bottom: 45px;
 
     width: 0;
     height: 0;
 
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 38px solid #df947b;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-top: 42px solid #df927a;
+
+    filter:
+        drop-shadow(
+            3px 4px 4px rgba(80, 60, 45, 0.17)
+        );
 }
 
 
-/* =========================
+/* =====================================================
    МОБИЛЬНАЯ ВЕРСИЯ
-========================= */
+===================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+
+    .title {
+        font-size: 29px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
 
     .board,
     .task-input {
-        width: 90%;
+        width: 92%;
         min-width: unset;
     }
 
+    .board {
+        height: 370px;
+    }
+
+    .progress-container {
+        width: 65%;
+    }
+
     .note.blue {
-        left: 20px;
+        left: 25px;
+        top: 100px;
     }
 
     .note.pink {
-        right: 20px;
+        right: 25px;
+        top: 100px;
     }
 
     .note.yellow {
-        left: 70px;
+        left: 40px;
+        bottom: 35px;
     }
 
     .note.green {
-        right: 20px;
+        right: 35px;
+        bottom: 30px;
+    }
+
+    .task-input button {
+        padding: 0 17px;
+    }
+
+    .plant.center {
+        display: none;
+    }
+
+    .plant.left {
+        left: 0;
+        transform: scale(0.75);
+        transform-origin: top left;
+    }
+
+    .plant.right {
+        right: 0;
+        transform: scale(0.75);
+        transform-origin: top right;
+    }
+
+    .camera {
+        right: 80px;
+    }
+
+    .triangle {
+        right: 25px;
     }
 }
