@@ -96,7 +96,7 @@ function addTask() {
 
     deleteButton.addEventListener(
         "click", 
-       gtag('event', 'click_start_btn');
+       gtag('event', 'click_start_btn',
         function(event) {
             event.stopPropagation();
 
@@ -104,7 +104,7 @@ function addTask() {
 
             updateProgress();
         }
-    );
+    ));
 
 
     /* =================================================
