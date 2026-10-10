@@ -95,9 +95,9 @@ function addTask() {
         note.querySelector(".delete-note");
 
     deleteButton.addEventListener(
-        "click",
+        "click", 
+       gtag('event', 'click_start_btn');
         function(event) {
-        gtag('event', 'click_start_btn');
             event.stopPropagation();
 
             note.remove();
