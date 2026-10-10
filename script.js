@@ -97,7 +97,7 @@ function addTask() {
     deleteButton.addEventListener(
         "click",
         function(event) {
-
+        gtag('event', 'click_start_btn');
             event.stopPropagation();
 
             note.remove();
