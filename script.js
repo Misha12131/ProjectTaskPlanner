@@ -94,17 +94,19 @@ function addTask() {
     const deleteButton =
         note.querySelector(".delete-note");
 
-    deleteButton.addEventListener(
-        "click", 
-        gtag('event', 'click_start_btn')
-        function(event) {
-            event.stopPropagation();
+    
+   deleteButton.addEventListener("click", function(event) {
+    event.stopPropagation();
 
-            note.remove();
+    note.remove();
 
-            updateProgress();
-        }
-    );
+    updateProgress();
+
+    if (typeof gtag === "function") {
+        gtag("event", "delete_task_btn");
+    }
+});
+
 
 
     /* =================================================
