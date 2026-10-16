@@ -350,12 +350,16 @@ function makeDraggable(note) {
    КНОПКА ДОБАВИТЬ
 ===================================================== */
 
+
 document
     .getElementById("addButton")
-    .addEventListener(
-        "click",
-        addTask
-    );
+    .addEventListener("click", function() {
+        addTask();
+
+        if (typeof gtag === "function") {
+            gtag("event", "add_task_btn");
+        }
+    });
 
 
 /* =====================================================
